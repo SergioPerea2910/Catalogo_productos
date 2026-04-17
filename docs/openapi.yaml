@@ -1,0 +1,281 @@
+openapi: 3.0.3
+
+info:
+  title: Catalogo de Productos API
+  version: 1.0.0
+  description: API para administrar un catalogo de productos digitales.
+
+servers:
+  - url: http://localhost:8000
+
+tags:
+  - name: Health
+  - name: Products
+
+paths:
+  /api/health:
+    get:
+      tags:
+        - Health
+      summary: Verifica que la API esta funcionando
+      responses:
+        "200":
+          description: API funcionando
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  message:
+                    type: string
+                    example: API funcionando
+
+  /api/products:
+    get:
+      tags:
+        - Products
+      summary: Lista los productos
+      security:
+        - ApiKeyAuth: []
+      responses:
+        "200":
+          description: Lista de productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+
+    post:
+      tags:
+        - Products
+      summary: Crea un producto
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProductRequest"
+      responses:
+        "201":
+          description: Producto creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "422":
+          $ref: "#/components/responses/ValidationError"
+
+  /api/products/{id}:
+    put:
+      tags:
+        - Products
+      summary: Actualiza un producto
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProductRequest"
+      responses:
+        "200":
+          description: Producto actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "422":
+          $ref: "#/components/responses/ValidationError"
+
+    delete:
+      tags:
+        - Products
+      summary: Inhabilita un producto
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        "200":
+          description: Producto inhabilitado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        sku:
+          type: string
+          example: PROD-001
+        name:
+          type: string
+          example: Curso Laravel
+        description:
+          type: string
+          nullable: true
+          example: Curso backend para principiantes
+        price:
+          type: number
+          format: float
+          example: 49.99
+        type:
+          type: string
+          example: curso
+        is_active:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          format: date-time
+          example: 2026-04-17T00:16:02.000000Z
+        updated_at:
+          type: string
+          format: date-time
+          example: 2026-04-17T00:16:02.000000Z
+
+    CreateProductRequest:
+      type: object
+      required:
+        - sku
+        - name
+        - price
+        - type
+      properties:
+        sku:
+          type: string
+          example: PROD-001
+        name:
+          type: string
+          example: Curso Laravel
+        description:
+          type: string
+          nullable: true
+          example: Curso backend para principiantes
+        price:
+          type: number
+          format: float
+          example: 49.99
+        type:
+          type: string
+          example: curso
+        is_active:
+          type: boolean
+          example: true
+
+    UpdateProductRequest:
+      type: object
+      properties:
+        sku:
+          type: string
+          example: PROD-001
+        name:
+          type: string
+          example: Curso Laravel actualizado
+        description:
+          type: string
+          nullable: true
+          example: Curso backend actualizado
+        price:
+          type: number
+          format: float
+          example: 59.99
+        type:
+          type: string
+          example: curso
+        is_active:
+          type: boolean
+          example: true
+
+    MessageResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Producto inhabilitado correctamente
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Unauthorized
+
+    ValidationErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: The sku field is required. (and 3 more errors)
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+
+  responses:
+    UnauthorizedError:
+      description: API key invalida o ausente
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+    ValidationError:
+      description: Error de validacion
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ValidationErrorResponse"
+
+    NotFoundError:
+      description: Producto no encontrado
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"

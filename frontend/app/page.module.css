@@ -1,0 +1,349 @@
+.page {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 420px);
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 24px;
+}
+
+.overviewCopy {
+  background: var(--surface-strong);
+  color: #f7f7f0;
+  padding: 32px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eyebrow,
+.sectionEyebrow {
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--highlight);
+}
+
+.overviewCopy h1 {
+  max-width: 14ch;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.02;
+  margin: 12px 0;
+}
+
+.description {
+  max-width: 62ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #dbe8df;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.metric {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 14px;
+  min-height: 92px;
+}
+
+.metricLabel {
+  display: block;
+  font-size: 0.85rem;
+  color: #c7ddd0;
+  margin-bottom: 10px;
+}
+
+.metricValue,
+.metricValueSuccess,
+.metricValueWarning {
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.metricValueSuccess {
+  color: #9af0c4;
+}
+
+.metricValueWarning {
+  color: #ffd48d;
+}
+
+.overviewMedia {
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.overviewMedia :global(img) {
+  object-fit: cover;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.editorPane,
+.listPane {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.sectionHeader h2 {
+  margin-top: 6px;
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field span {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #ffffff;
+  color: var(--foreground);
+  font: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field small {
+  color: var(--accent-strong);
+  font-size: 0.83rem;
+}
+
+.inlineFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.checkboxRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.checkboxRow input {
+  width: 18px;
+  height: 18px;
+}
+
+.primaryButton,
+.secondaryButton,
+.ghostButton {
+  border-radius: 8px;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.primaryButton {
+  border: 0;
+  background: var(--accent);
+  color: #fffdf7;
+  font-weight: 700;
+}
+
+.primaryButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.secondaryButton {
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--foreground);
+}
+
+.ghostButton {
+  border: 1px solid #efcabf;
+  background: #fff3ee;
+  color: #9f412f;
+}
+
+.feedbackError,
+.feedbackSuccess,
+.emptyState {
+  border-radius: 8px;
+  padding: 12px 14px;
+  line-height: 1.5;
+}
+
+.feedbackError {
+  background: #fff1ec;
+  color: #8f3e2e;
+}
+
+.feedbackSuccess {
+  background: #edf8f2;
+  color: var(--success);
+}
+
+.emptyState {
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.productList {
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+
+.productRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  background: #ffffff;
+}
+
+.productIdentity {
+  min-width: 0;
+}
+
+.productHeading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.productHeading strong {
+  font-size: 1.08rem;
+}
+
+.productType {
+  background: #f5e8be;
+  color: #745200;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.productIdentity p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.productMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: #2e5a58;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.productActions {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-width: 140px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .primaryButton:hover {
+    background: var(--accent-strong);
+  }
+
+  .secondaryButton:hover {
+    background: #f3f7f3;
+  }
+
+  .ghostButton:hover {
+    background: #ffe8dd;
+    border-color: #e9b3a3;
+  }
+}
+
+@media (max-width: 960px) {
+  .overview,
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .overviewCopy h1 {
+    max-width: none;
+  }
+
+  .productRow {
+    grid-template-columns: 1fr;
+  }
+
+  .productActions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 16px;
+  }
+
+  .overviewCopy,
+  .editorPane,
+  .listPane {
+    padding: 18px;
+  }
+
+  .metrics,
+  .inlineFields,
+  .productActions {
+    grid-template-columns: 1fr;
+  }
+}
