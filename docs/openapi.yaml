@@ -154,18 +154,18 @@ components:
           example: PROD-001
         name:
           type: string
-          example: Curso Laravel
+          example: Plantilla financiera premium
         description:
           type: string
           nullable: true
-          example: Curso backend para principiantes
+          example: Plantilla editable para presupuesto y flujo de caja
         price:
           type: number
           format: float
           example: 49.99
         type:
           type: string
-          example: curso
+          example: plantilla
         is_active:
           type: boolean
           example: true
@@ -191,18 +191,18 @@ components:
           example: PROD-001
         name:
           type: string
-          example: Curso Laravel
+          example: Plantilla financiera premium
         description:
           type: string
           nullable: true
-          example: Curso backend para principiantes
+          example: Plantilla editable para presupuesto y flujo de caja
         price:
           type: number
           format: float
           example: 49.99
         type:
           type: string
-          example: curso
+          example: plantilla
         is_active:
           type: boolean
           example: true
@@ -215,18 +215,18 @@ components:
           example: PROD-001
         name:
           type: string
-          example: Curso Laravel actualizado
+          example: Licencia panel comercial
         description:
           type: string
           nullable: true
-          example: Curso backend actualizado
+          example: Acceso anual al panel de indicadores comerciales
         price:
           type: number
           format: float
           example: 59.99
         type:
           type: string
-          example: curso
+          example: software
         is_active:
           type: boolean
           example: true

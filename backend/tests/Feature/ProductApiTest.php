@@ -14,10 +14,10 @@ class ProductApiTest extends TestCase
     {
         $payload = [
             'sku' => 'PROD-TEST-001',
-            'name' => 'Producto de prueba',
-            'description' => 'Producto creado desde test',
+            'name' => 'Plantilla premium',
+            'description' => 'Plantilla editable para control financiero',
             'price' => 29.99,
-            'type' => 'ebook',
+            'type' => 'plantilla',
             'is_active' => true,
         ];
 
@@ -28,12 +28,12 @@ class ProductApiTest extends TestCase
         $response->assertStatus(201)
             ->assertJsonFragment([
                 'sku' => 'PROD-TEST-001',
-                'name' => 'Producto de prueba',
+                'name' => 'Plantilla premium',
             ]);
 
         $this->assertDatabaseHas('products', [
             'sku' => 'PROD-TEST-001',
-            'name' => 'Producto de prueba',
+            'name' => 'Plantilla premium',
         ]);
     }
 
@@ -80,7 +80,7 @@ class ProductApiTest extends TestCase
             'name' => 'Producto inactivo',
             'description' => 'No debe verse en el listado',
             'price' => 20.00,
-            'type' => 'curso',
+            'type' => 'software',
             'is_active' => false,
         ]);
 

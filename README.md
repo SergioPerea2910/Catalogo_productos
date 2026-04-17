@@ -122,10 +122,10 @@ Body:
 ```json
 {
   "sku": "PROD-001",
-  "name": "Curso Laravel",
-  "description": "Curso backend para principiantes",
+  "name": "Plantilla financiera premium",
+  "description": "Plantilla editable para presupuesto y flujo de caja",
   "price": 49.99,
-  "type": "curso",
+  "type": "plantilla",
   "is_active": true
 }
 ```
@@ -198,3 +198,9 @@ Si este servicio tuviera que soportar 1 millon de usuarios diarios, haria varios
 - Documentaria formalmente la API con OpenAPI/Swagger para facilitar integracion y mantenimiento.
 
 En resumen, para ese nivel de trafico el objetivo ya no seria solo que el sistema funcione, sino que responda rapido, escale sin afectar al usuario y sea facil de operar en produccion.
+
+## Guia de apoyo
+
+Tambien se incluye una guia explicativa en modo dummies para repasar el proyecto antes de la entrevista:
+
+`docs/guia-dummies.html`

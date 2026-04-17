@@ -37,16 +37,16 @@ const INITIAL_FORM: FormState = {
   name: "",
   description: "",
   price: "",
-  type: "curso",
+  type: "plantilla",
   is_active: true,
 };
 
 const PRODUCT_TYPES = [
-  "curso",
   "ebook",
   "suscripcion",
   "software",
   "plantilla",
+  "reporte",
 ];
 
 function formatPrice(value: number) {
@@ -342,7 +342,7 @@ export default function Home() {
               <input
                 name="name"
                 onChange={handleInputChange}
-                placeholder="Curso Laravel"
+                placeholder="Plantilla financiera premium"
                 type="text"
                 value={form.name}
               />

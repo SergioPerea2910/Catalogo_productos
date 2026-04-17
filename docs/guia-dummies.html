@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia Dummies - Catalogo de Productos</title>
+    <style>
+      :root {
+        --bg: #eef2ef;
+        --paper: #ffffff;
+        --ink: #16231f;
+        --muted: #58706b;
+        --line: #c8d7cc;
+        --strong: #173a3a;
+        --accent: #ef6c57;
+        --accent-soft: #fff1ec;
+        --ok: #1f7a56;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.55;
+      }
+
+      main {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .hero {
+        background: var(--strong);
+        color: #f7f8f4;
+        padding: 28px;
+        border-radius: 8px;
+      }
+
+      .hero h1 {
+        margin: 0 0 10px;
+        font-size: 2rem;
+      }
+
+      .hero p {
+        margin: 0;
+        max-width: 68ch;
+        color: #d6e3da;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      section,
+      .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 22px;
+      }
+
+      h2 {
+        margin-top: 0;
+        font-size: 1.4rem;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 1.05rem;
+      }
+
+      p,
+      li {
+        color: var(--ink);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      ul {
+        padding-left: 18px;
+        margin: 10px 0 0;
+      }
+
+      code {
+        background: #f4f6f5;
+        border: 1px solid #e4ece7;
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-family: Consolas, monospace;
+        font-size: 0.94em;
+      }
+
+      pre {
+        background: #132b2b;
+        color: #f4f7f6;
+        padding: 14px;
+        border-radius: 8px;
+        overflow: auto;
+        font-size: 0.92rem;
+      }
+
+      .note {
+        background: var(--accent-soft);
+        border: 1px solid #f6d0c5;
+        border-radius: 8px;
+        padding: 14px;
+      }
+
+      .ok {
+        background: #edf8f2;
+        border: 1px solid #cfe9d7;
+        color: var(--ok);
+        border-radius: 8px;
+        padding: 14px;
+      }
+
+      .full {
+        margin-top: 20px;
+      }
+
+      .two-cols {
+        columns: 2;
+        column-gap: 28px;
+      }
+
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .two-cols {
+          columns: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <h1>Guia Dummies del Proyecto</h1>
+        <p>
+          Esta guia esta pensada para repasar rapido antes de la entrevista. La
+          idea no es hablar como libro, sino entender que hace cada pieza y
+          poder explicarla con palabras normales.
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1. Que es este proyecto</h2>
+          <p>
+            Es una aplicacion fullstack para administrar un catalogo de
+            productos digitales.
+          </p>
+          <ul>
+            <li><strong>Backend:</strong> Laravel en PHP</li>
+            <li><strong>Frontend:</strong> Next.js</li>
+            <li><strong>Base de datos:</strong> SQLite</li>
+            <li><strong>Documentacion:</strong> OpenAPI</li>
+          </ul>
+          <p class="note">
+            Frase corta para entrevista: "Construí un CRUD de productos
+            digitales con backend en Laravel y frontend en Next, con validación,
+            protección básica de endpoints, pruebas y documentación."
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Como fluye una peticion</h2>
+          <pre>Frontend -> Next API route -> Laravel API -> Base de datos -> respuesta</pre>
+          <p>
+            El navegador no llama directo al backend protegido. Primero le pega
+            a Next y Next hace de intermediario para no exponer la API key en el
+            cliente.
+          </p>
+        </section>
+      </div>
+
+      <section class="full">
+        <h2>3. Backend explicado facil</h2>
+        <div class="two-cols">
+          <p><code>routes/api.php</code>: define que URLs existen.</p>
+          <p><code>Controller</code>: recibe la petición y decide a quién llamar.</p>
+          <p><code>Request</code>: valida que los datos lleguen bien.</p>
+          <p><code>Service</code>: tiene la lógica de negocio.</p>
+          <p><code>Repository</code>: habla con la base de datos.</p>
+          <p><code>Model</code>: representa la tabla <code>products</code>.</p>
+          <p><code>Migration</code>: dice cómo se crea la tabla.</p>
+          <p><code>Middleware</code>: revisa si la API key es correcta.</p>
+        </div>
+        <div class="ok">
+          Mapa mental corto: <code>ruta -> controller -> request -> service ->
+          repository -> model -> base de datos</code>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>4. Campos del producto</h2>
+          <ul>
+            <li><code>sku</code>: codigo interno unico</li>
+            <li><code>name</code>: nombre del producto</li>
+            <li><code>description</code>: descripcion</li>
+            <li><code>price</code>: precio</li>
+            <li><code>type</code>: tipo de producto</li>
+            <li><code>is_active</code>: activo o inhabilitado</li>
+          </ul>
+          <p class="muted">
+            <code>id</code>, <code>created_at</code> y
+            <code>updated_at</code> los maneja Laravel.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Por que el DELETE no borra</h2>
+          <p>
+            Porque en esta solucion el borrado es logico, no fisico. En vez de
+            eliminar el registro, se cambia <code>is_active</code> a
+            <code>false</code>.
+          </p>
+          <p class="note">
+            Frase para entrevista: "Preferí inhabilitación lógica para no perder
+            trazabilidad y evitar borrar datos que podrían servir después."
+          </p>
+        </section>
+      </div>
+
+      <section class="full">
+        <h2>6. Por que el listado solo muestra activos</h2>
+        <p>
+          Si <code>DELETE</code> solo inhabilita, entonces lo coherente es que
+          el catálogo principal muestre únicamente productos activos. Los
+          inactivos siguen en base de datos, pero no aparecen en la vista
+          principal ni en <code>GET /api/products</code>.
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>7. Seguridad basica</h2>
+          <p>
+            Los endpoints de productos piden un header
+            <code>X-API-KEY</code>. Si la llave no llega o es incorrecta,
+            Laravel responde <code>401 Unauthorized</code>.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Validacion</h2>
+          <p>La validación vive en clases separadas:</p>
+          <ul>
+            <li><code>StoreProductRequest</code></li>
+            <li><code>UpdateProductRequest</code></li>
+          </ul>
+          <p>
+            Eso permite que el controller quede limpio y no tenga todas las
+            reglas mezcladas.
+          </p>
+        </section>
+      </div>
+
+      <section class="full">
+        <h2>9. Frontend explicado facil</h2>
+        <div class="two-cols">
+          <p><code>app/page.tsx</code>: pantalla principal.</p>
+          <p><code>useState</code>: guarda datos en memoria.</p>
+          <p><code>useEffect</code>: carga productos al abrir la página.</p>
+          <p><code>handleSubmit()</code>: crea o actualiza un producto.</p>
+          <p><code>loadProducts()</code>: vuelve a consultar el listado.</p>
+          <p><code>app/api/products</code>: proxy interno de Next.</p>
+          <p><code>lib/backend.ts</code>: helper que llama a Laravel.</p>
+          <p>
+            <code>.env.local</code>: guarda la URL del backend y la API key.
+          </p>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>10. Por que la tabla se actualiza sola</h2>
+          <p>
+            Cuando creas, editas o inhabilitas, el frontend vuelve a ejecutar
+            <code>loadProducts()</code>. Eso trae la lista actualizada del
+            backend y React vuelve a pintar la pantalla.
+          </p>
+          <pre>guardar -> respuesta OK -> loadProducts() -> setProducts() -> React repinta</pre>
+        </section>
+
+        <section>
+          <h2>11. Pruebas</h2>
+          <p>El backend tiene pruebas para verificar:</p>
+          <ul>
+            <li>creación de producto</li>
+            <li>errores de validación</li>
+            <li>protección por API key</li>
+            <li>listado solo de productos activos</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="full">
+        <h2>12. Docker en palabras normales</h2>
+        <p>
+          Docker sirve para que el proyecto corra igual en otra máquina sin
+          depender de tener PHP instalado localmente.
+        </p>
+        <pre>docker compose up --build</pre>
+        <p>
+          Ese comando construye el backend, instala dependencias, corre
+          migraciones y levanta Laravel.
+        </p>
+      </section>
+
+      <section class="full">
+        <h2>13. OpenAPI / Swagger</h2>
+        <p>
+          El archivo <code>docs/openapi.yaml</code> describe la API: rutas,
+          request body, respuestas y autenticación. No ejecuta lógica; solo
+          documenta.
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>14. Preguntas tipicas y respuestas cortas</h2>
+          <ul>
+            <li>
+              <strong>Por que separaste por capas?</strong><br />
+              Para separar responsabilidades y hacer el código más fácil de
+              mantener y probar.
+            </li>
+            <li>
+              <strong>Por que SQLite?</strong><br />
+              Porque para una prueba técnica es rápido de montar y suficiente
+              para demostrar persistencia.
+            </li>
+            <li>
+              <strong>Que mejorarías en producción?</strong><br />
+              Base de datos más robusta, caché, paginación, monitoreo y
+              autenticación más fuerte.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>15. Comandos utiles</h2>
+          <pre>docker compose up --build
+cd frontend
+npm install
+npm run dev
+
+cd backend
+docker run --rm -v "${PWD}:/app" -w /app composer php artisan test</pre>
+        </section>
+      </div>
+
+      <section class="full">
+        <h2>16. Resumen final para que no te enredes</h2>
+        <p class="ok">
+          Backend: recibe, valida, aplica reglas y guarda. Frontend: muestra la
+          información, envía formularios y refresca la vista. Next hace de
+          puente para no exponer la API key. Docker facilita ejecutar el backend
+          en cualquier máquina. OpenAPI documenta la API. Los tests demuestran
+          que lo importante sí funciona.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
